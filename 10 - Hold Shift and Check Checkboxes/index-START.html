@@ -97,13 +97,32 @@
 
 <script>
 
-  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
 
-  function handleCheck(e) {
-    console.log(e)
+let lastChecked;
+
+function handleCheck(e) {
+  // Check if shift key is pressed
+  //AND check that the box is checked, not unchecked.
+  let inBetween = false;
+  if (e.shiftKey && this.checked) {
+    checkboxes.forEach(checkbox => {
+      console.log(checkbox);
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween;
+        console.log('Starting to check them inbetween')
+      }
+
+      if (inBetween) {
+        checkbox.checked = true;
+      }
+    });
   }
+  
+  lastChecked = this;
+}
 
-  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 
 </script>
 </body>
