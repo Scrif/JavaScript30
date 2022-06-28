@@ -22,8 +22,21 @@ function togglePlay() {
 //    }
 }
 
+function updateButton() {
+    toggle.textContent = this.paused ? '►' : '❚ ❚';
+    
+    //alternative:
+    //const icon = this.paused ? '►' : '❚ ❚';
+    //toggle.textContent = icon;
+}
 
+function skip() {
+    
+}
 
 // Connect event listeners
 
 video.addEventListener('click', togglePlay);
+video.addEventListener('play', updateButton);
+video.addEventListener('pause', updateButton);
+toggle.addEventListener('click', togglePlay);
